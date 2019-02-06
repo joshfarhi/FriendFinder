@@ -6,16 +6,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "survey.html"));
-  });
+  res.sendFile(path.join(__dirname, "home.html"));
+});
 
-  app.get("/", function (req, res, next) {
-    fs.readFile("home.html", function (err, data) {
-      if (err) {
-        next(err); // Pass errors to Express.
-      }
-      else {
-        res.send(data);
-      }
-    });
-  });
+app.get("/add", function(req, res) {
+  res.sendFile(path.join(__dirname, "survey.html"));
+});
