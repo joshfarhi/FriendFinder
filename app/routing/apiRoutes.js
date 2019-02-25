@@ -1,24 +1,38 @@
-var express = require("express");
-var path = require("path");
 var friends = require("../data/friends.js")
-var app = express();
-var PORT = 3000;
 
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+module.exports = function (app) {
+  app.get("/api/friends", function (req, res) {
+    res.json(friends);
+  });
+
+  app.post("/api/friends", function (req, res) {
+    console.log(req.body.scores);
 
 
-app.get("/api/friends", function(req, res) {
-  res.json(friends)
-});
+    var user = req.body;
 
-app.use(package.json());
+    for (var i = 0; i < user.scores.length; i++) {
+      user.scores[i] = parseInt(user.scores[i]);
+    }
+    var bestFriendIndex = 0;
+    var minimumDifference = 40;
 
-app.post('/', function(request, res){
-  console.log(request.body);      // your JSON
-   res.send(request.body);    // echo the result back
-});
+    for (var i = 0; i < friends.length; i++) {
+      var totalDifference = 0;
+      for (var j = 0; j < friends[i].scores.length; j++) {
+        var difference = Math.abs(user.scores[j] - friends[i].scores[j]);
+        totalDifference += difference;
+      }
 
-app.listen(3000);
+      if (totalDifference < minimumDifference) {
+        bestFriendIndex = i;
+        minimumDifference = totalDifference;
+      }
+    }
 
+    friends.push(user);
+
+    res.json(friends[bestFriendIndex]);
+  });
+};
