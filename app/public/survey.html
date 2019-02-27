@@ -225,7 +225,6 @@
                         $("#question10").val()
                     ]
                 };
-                // be the same name as line17 api-route
                 $.post("/api/friends", userData, function (bestMatch) {
 
                     $("#bestFriend").text(bestMatch.name);
