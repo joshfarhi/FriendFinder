@@ -147,24 +147,27 @@
         <div class="text-center">
             <button id="submitButton" type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
         </div>
+    </div>
+    <div id="bestFriendInfo" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-        <div id="resultModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Your Match!</h1>
-                    </div>
-                    <div class="modal-body">
-                        <h2 id="bestFriend"></h2>
-                        <img id="bestFriendPhoto" src="#">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title">Best buddy</h2>
+                </div>
+                <div class="modal-body">
+                    <h2 id="bestFriend"></h2>
+                    <img id="bestPhoto" src="https://pbs.twimg.com/profile_images/1018943227791982592/URnaMrya_400x400.jpg"
+                        alt="">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
+
         </div>
+    </div>
     </div>
 
     <script type="text/javascript">
@@ -188,7 +191,7 @@
             $(grabInfo).chosen(cssChosen[grabInfo]);
         }
 
-        $("#submit").on("click", function (event) {
+        $("#submitButton").on("click", function (event) {
             event.preventDefault();
 
             function validateForm() {
